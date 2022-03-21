@@ -104,7 +104,7 @@ namespace PrimeGen.ConsoleApp
             Console.WriteLine(result);
         }
 
-        private void MultipleRequests()
+        private async void MultipleRequests()
         {
             var startTime = DateTime.Now;
 
@@ -114,15 +114,15 @@ namespace PrimeGen.ConsoleApp
 
             for (var i = 0; i < 25; i++)
             {
-                var response = _client.GetAsync("https://localhost:44350/Loadbalancer/" + "isprime?input=" + r.Next(1, 100));
-                var result = response.Result.Content.ReadAsStringAsync().Result;
+                var response = await _client.GetAsync("https://localhost:44350/Loadbalancer/" + "isprime?input=" + r.Next(1, 100));
+                var result = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine(result);
             }
 
             var endTime = DateTime.Now;
 
             
-            Console.WriteLine("========== FINISHED 10 REQUEST AT: " + endTime);
+            Console.WriteLine("========== FINISHED 25 REQUEST AT: " + endTime);
         }
     }
 }

@@ -2,6 +2,7 @@
 using PrimeGen.Service.Interface;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace PrimeGen.API3.Controllers
 {
@@ -22,6 +23,7 @@ namespace PrimeGen.API3.Controllers
         {
             try
             {
+                Thread.Sleep(1000);
                 return Ok(_service.IsPrime(input));
             }
             catch (FormatException e)
