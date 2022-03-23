@@ -23,7 +23,7 @@ namespace PrimeGen.API.Controllers
         {
             try
             {
-                Thread.Sleep(500);
+                Thread.Sleep(3000);
                 return Ok(_service.IsPrime(input));
             }
             catch (FormatException e)
