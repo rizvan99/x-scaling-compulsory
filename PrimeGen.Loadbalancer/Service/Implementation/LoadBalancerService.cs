@@ -12,7 +12,7 @@ namespace PrimeGen.Loadbalancer.Service.Implementation
     {
         private readonly ServerConfig _config;
         private readonly HttpClient _client;
-        private int _previousVal = 0;
+        private int _previousVal = -1;
 
         public LoadBalancerService(ServerConfig config)
         {
@@ -23,11 +23,12 @@ namespace PrimeGen.Loadbalancer.Service.Implementation
         private string FetchRandomServer()
         {
             Random r = new Random();
-            int rNum = r.Next(0, 3);
+            int serverCount = _config.Servers.Length;
+            int rNum = r.Next(0, serverCount);
 
             while (_previousVal == rNum)
             {
-                rNum = r.Next(0, 3);
+                rNum = r.Next(0, serverCount);
             }
 
             _previousVal = rNum;
